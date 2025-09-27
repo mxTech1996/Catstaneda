@@ -1,130 +1,117 @@
-// En tu archivo: /components/TeamSection.js
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-// Íconos para redes sociales
-import { LuLinkedin, LuTwitter } from 'react-icons/lu';
+// Importamos los íconos que usaremos
+import {
+  FiEdit,
+  FiAward,
+  FiGlobe,
+  FiLayers,
+  FiTrendingUp,
+  FiEye,
+} from 'react-icons/fi';
 
-// --- Datos para la sección ---
-const teamData = [
+// --- DATOS PARA EL COMPONENTE ---
+const benefitsList = [
   {
-    image: '/images/team1.png', // Reemplaza con tus imágenes
-    name: 'Carlos Rodriguez',
-    title: 'Lead Structural Engineer',
-    socials: {
-      linkedin: '#',
-      twitter: '#',
-    },
+    icon: <FiEdit />,
+    title: 'Bespoke Strategy',
+    description:
+      'We don’t use templates. Every client receives a tailor-made strategy designed for their unique brand and goals.',
+    colors: 'text-[#D3A6A1] bg-[#FAE8E6]', // Terracotta/Rose
   },
   {
-    image: '/images/team2.png',
-    name: 'Sophia Chen',
-    title: 'Senior Project Manager',
-    socials: {
-      linkedin: '#',
-      twitter: '#',
-    },
+    icon: <FiAward />,
+    title: 'Industry Expertise',
+    description:
+      'With over 15 years of experience, we provide deep, actionable insights into the fashion and retail landscape.',
+    colors: 'text-[#87A99C] bg-[#E7F0ED]', // Sage Green
   },
   {
-    image: '/images/team3.png',
-    name: 'Anh Nguyen',
-    title: 'Geotechnical Specialist',
-    socials: {
-      linkedin: '#',
-      twitter: '#',
-    },
+    icon: <FiGlobe />,
+    title: 'Ethical Sourcing',
+    description:
+      'Navigate the complexities of sustainable and ethical sourcing with our global network of trusted suppliers.',
+    colors: 'text-[#D3A6A1] bg-[#FAE8E6]',
   },
   {
-    image: '/images/team4.png',
-    name: 'Ben Davis',
-    title: 'BIM Coordinator',
-    socials: {
-      linkedin: '#',
-      twitter: '#',
-    },
+    icon: <FiLayers />,
+    title: 'End-to-End Support',
+    description:
+      'From the first sketch to the final retail launch, we guide you through every step of the process.',
+    colors: 'text-[#87A99C] bg-[#E7F0ED]',
+  },
+  {
+    icon: <FiTrendingUp />,
+    title: 'Proven Results',
+    description:
+      'Our goal is your growth. We focus on data-driven strategies that deliver measurable commercial success.',
+    colors: 'text-[#D3A6A1] bg-[#FAE8E6]',
+  },
+  {
+    icon: <FiEye />,
+    title: 'Creative Vision',
+    description:
+      'We blend artistic vision with market trends to create apparel lines that are both beautiful and commercially viable.',
+    colors: 'text-[#87A99C] bg-[#E7F0ED]',
   },
 ];
 
-const TeamSection = () => {
-  // Variantes para animación escalonada
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
+const Benefits = () => {
   return (
-    <section className='py-20 md:py-28 bg-white'>
-      <div className='container mx-auto px-4'>
+    <section className='py-24 bg-[#FAF8F5]'>
+      <div className='container mx-auto px-6'>
+        {/* Título de la Sección */}
         <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
           className='text-center mb-16'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          <p className='font-semibold text-pink-600 mb-2 uppercase'>
-            Our Experts
+          <p className='font-semibold text-gray-500 tracking-widest text-sm mb-2'>
+            OUR COMMITMENT
           </p>
-          <h2 className='text-4xl md:text-5xl font-bold text-gray-900'>
-            Meet Our Team
+          <h2 className='text-5xl font-serif font-bold text-gray-800'>
+            The Castañeda Difference
           </h2>
+          <p className='mt-4 text-lg text-gray-600 max-w-2xl mx-auto'>
+            From quality to care — here’s why brands choose to build their
+            future with us again and again.
+          </p>
         </motion.div>
 
+        {/* Grid de Beneficios */}
         <motion.div
-          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'
-          variants={containerVariants}
+          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ staggerChildren: 0.1 }}
         >
-          {teamData.map((member, index) => (
+          {benefitsList.map((benefit, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className='bg-white rounded-lg shadow-md hover:shadow-xl text-center flex flex-col items-center transition-all duration-300'
+              className='bg-white p-8 rounded-[2rem] shadow-sm text-center flex flex-col items-center'
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
-              <div className='w-full h-64 relative'>
-                <Image
-                  src={member.image}
-                  alt={`Portrait of ${member.name}`}
-                  layout='fill'
-                  objectFit='cover'
-                  className='rounded-t-lg'
-                />
+              <div
+                className={`flex items-center justify-center h-16 w-16 rounded-2xl mb-5 ${benefit.colors}`}
+              >
+                {benefit.icon}
               </div>
-              <div className='p-6 flex flex-col items-center flex-grow'>
-                <h3 className='text-xl font-bold text-gray-800'>
-                  {member.name}
-                </h3>
-                <p className='text-pink-600 font-medium mt-1 mb-4'>
-                  {member.title}
-                </p>
-                <div className='flex items-center gap-4 mt-auto'>
-                  {/* <a
-                    href={member.socials.linkedin}
-                    className='text-gray-400 hover:text-pink-600 transition-colors'
-                  >
-                    <LuLinkedin size={20} />
-                  </a>
-                  <a
-                    href={member.socials.twitter}
-                    className='text-gray-400 hover:text-pink-600 transition-colors'
-                  >
-                    <LuTwitter size={20} />
-                  </a> */}
-                </div>
-              </div>
+              <h3 className='text-xl font-bold text-gray-800'>
+                {benefit.title}
+              </h3>
+              <div
+                className={`w-10 h-0.5 my-3 ${benefit.colors
+                  .split(' ')[1]
+                  .replace('bg-', 'bg-opacity-50 ')}`}
+              ></div>
+              <p className='text-gray-600'>{benefit.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -133,4 +120,4 @@ const TeamSection = () => {
   );
 };
 
-export default TeamSection;
+export default Benefits;

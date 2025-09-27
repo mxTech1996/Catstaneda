@@ -1,89 +1,77 @@
-// CÓDIGO COMPLETO PARA LA PRIMERA SECCIÓN
-// Guárdalo en un archivo como: /components/Hero.js
-
 'use client';
 
 import { motion } from 'framer-motion';
-// Ícono para la flecha de scroll
-import { LuChevronDown } from 'react-icons/lu';
+import Image from 'next/image';
+import { FiBookOpen } from 'react-icons/fi';
 
-// --- Componente Principal de la Sección Hero ---
-const HeroSection = () => {
-  // Variantes para animación escalonada
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
+const Hero = () => {
   return (
-    <section className='relative w-full h-screen bg-gradient-to-br from-indigo-800 via-purple-700 to-pink-700 text-white flex flex-col justify-center items-center overflow-hidden'>
-      {/* Patrones geométricos de fondo */}
-      <div className='absolute top-0 left-0 w-full h-full opacity-20'>
-        <div className='absolute top-1/4 left-1/4 w-96 h-96 border-2 border-white/20 rounded-full'></div>
-        <div className='absolute bottom-1/4 right-1/4 w-72 h-72 border-2 border-white/20 rounded-full'></div>
-      </div>
+    <section className='bg-[#FAF8F5] pt-12 pb-24 overflow-hidden'>
+      <div className='container mx-auto px-6'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+          {/* Columna de Texto */}
+          <motion.div
+            className='text-center lg:text-left'
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
+            <p className='font-semibold text-gray-500 tracking-widest text-sm mb-2'>
+              DESIGN - MANUFACTURE - RETAIL
+            </p>
+            <h1 className='text-5xl md:text-7xl font-serif font-bold text-gray-800 leading-tight'>
+              Crafting Fashion, Building Brands.
+            </h1>
+            <p className='mt-6 text-lg text-gray-600 max-w-lg mx-auto lg:mx-0'>
+              From initial sketch to final stitch, we provide expert guidance to
+              bring your apparel vision to life and build a successful retail
+              presence.
+            </p>
 
-      <div className='container mx-auto px-4 relative z-10'>
-        <motion.div
-          className='text-center max-w-4xl mx-auto'
-          variants={containerVariants}
-          initial='hidden'
-          animate='visible'
-        >
-          <motion.p
-            variants={itemVariants}
-            className='font-semibold text-pink-300 mb-2 uppercase tracking-widest'
-          >
-            Innovative Engineering Solutions
-          </motion.p>
-          <motion.h1
-            variants={itemVariants}
-            className='text-5xl md:text-7xl font-extrabold leading-tight mb-6'
-          >
-            Engineering the Future of Construction.
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className='text-lg text-indigo-100/90 mb-8 max-w-2xl mx-auto'
-          >
-            From conceptual design to project completion, we deliver
-            cutting-edge engineering services that ensure quality, efficiency,
-            and structural integrity for the modern world.
-          </motion.p>
-          <motion.div variants={itemVariants}>
-            <a
-              href='#services'
-              className='px-10 py-4 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105'
+            {/* Bloque CTA */}
+            <motion.div
+              className='mt-10 p-6 bg-white rounded-xl shadow-sm flex items-center max-w-md mx-auto lg:mx-0'
+              whileHover={{ scale: 1.03 }}
             >
-              Explore Our Services
-            </a>
+              <div className='bg-red-100 p-4 rounded-full mr-5'>
+                <FiBookOpen className='text-2xl text-[#D3A6A1]' />
+              </div>
+              <div>
+                <h3 className='font-bold text-lg text-gray-800'>
+                  Discover Our Process Now
+                </h3>
+                <p className='text-gray-600'>
+                  Browse our full range of services.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
 
-      {/* Flecha animada para invitar al scroll */}
-      <motion.div
-        className='absolute bottom-10'
-        initial={{ y: 0, opacity: 0.7 }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <LuChevronDown size={32} />
-      </motion.div>
+          {/* Columna de Imagen */}
+          <motion.div
+            className='relative h-[500px]'
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Formas de Fondo */}
+            <div className='absolute top-10 right-10 w-48 h-96 bg-[#D3A6A1]/40 rounded-full blur-sm'></div>
+            <div className='absolute bottom-10 left-10 w-72 h-48 bg-[#A1D3B9]/40 rounded-full blur-sm'></div>
+
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <Image
+                src='/images/heroCas.png'
+                alt='Fashion design process collage'
+                width={600}
+                height={600}
+                className='object-contain'
+              />
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };
 
-export default HeroSection;
+export default Hero;

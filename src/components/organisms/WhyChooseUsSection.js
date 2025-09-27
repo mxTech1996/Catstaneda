@@ -100,7 +100,7 @@ const WhyChooseUsSection = () => {
           </motion.div>
         </div>
       </section>
-      <section className='py-20 md:py-28 bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-700'>
+      <section className='py-20 md:py-28 bg-gradient-to-r from-[#D3A6A1]  to-[#A1D3B9]'>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

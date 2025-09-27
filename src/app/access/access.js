@@ -136,7 +136,7 @@ const LoginPage = () => {
             <div>
               <button
                 type='submit'
-                className='w-full px-4 py-3 font-semibold text-white bg-pink-600 rounded-lg hover:bg-pink-ring-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-300 transition-colors duration-300'
+                className='w-full px-4 py-3 font-semibold text-white bg-[#D3A6A1] rounded-lg hover:bg-pink-ring-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-300 transition-colors duration-300'
               >
                 Sign In
               </button>

@@ -1,103 +1,140 @@
-// En tu archivo: /components/ServicesSection.js
 'use client';
 
-import { dataSite } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+// Importa Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { dataSite } from '@/data';
 
-// --- Datos para la sección ---
-const servicesDataFirst = dataSite.services.slice(0, 3); // Tomamos solo los primeros 4 servicios para mostrar
-const allServicesData = dataSite.services; // Todos los servicios
+// --- DATOS PARA EL COMPONENTE ---
+const serviceCategories = [
+  { name: 'Conceptual Design', icon: '/images/icon1.png' },
+  { name: 'Material Sourcing', icon: '/images/icon2.png' },
+  { name: 'Manufacturing', icon: '/images/icon3.png' },
+  { name: 'Retail Strategy', icon: '/images/icon4.png' },
+  { name: 'Specialty Apparel', icon: '/images/icon5.png' },
+  { name: 'Uniform Design', icon: '/images/icon6.png' },
+];
 
-const ServicesSection = () => {
-  const [viewAll, setViewAll] = useState(false);
-  // Variantes para animación escalonada
-  const servicesData = viewAll ? allServicesData : servicesDataFirst;
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-  };
+const featuredServices = dataSite.products;
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
+const Services = () => {
   return (
-    <section id='services' className='py-20 md:py-28 bg-gray-50'>
-      <div className='container mx-auto px-4'>
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          className='text-center mb-16'
-        >
-          <p className='font-semibold text-pink-600 mb-2 uppercase'>
-            Services We Provide
-          </p>
-          <h2 className='text-4xl md:text-5xl font-bold text-gray-900'>
-            Our Engineering Expertise
-          </h2>
-        </motion.div>
-
-        <motion.div
-          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'
-          variants={containerVariants}
-          initial='visible'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {servicesData.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className='bg-white rounded-lg shadow-md hover:shadow-xl overflow-hidden flex flex-col transition-shadow duration-300'
-            >
-              <div className='w-full h-56 relative overflow-hidden'>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  layout='fill'
-                  objectFit='cover'
-                  className='transition-transform duration-500 ease-in-out hover:scale-105'
-                />
-              </div>
-              <div className='p-6 flex flex-col flex-grow'>
-                <h3 className='text-xl font-bold text-gray-800 mb-3'>
-                  {service.title}
-                </h3>
-                <p className='text-gray-600 text-sm flex-grow'>
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className='text-center mt-16'
-        >
-          <button
-            onClick={() => setViewAll(!viewAll)}
-            className='font-semibold text-pink-600 hover:text-pink-700 transition-colors'
+    <section className='py-24 bg-[#FAF8F5]'>
+      <div className='container mx-auto px-6'>
+        {/* Parte 1: Cuadrícula de Categorías */}
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            {viewAll ? 'View Less Services' : 'View All Services'}
-          </button>
-        </motion.div>
+            <p className='font-semibold text-gray-500 tracking-widest text-sm mb-2'>
+              OUR EXPERTISE
+            </p>
+            <h2 className='text-5xl font-serif font-bold text-gray-800 leading-tight'>
+              A Bespoke Approach for Every Client
+            </h2>
+            <p className='mt-6 text-lg text-gray-600'>
+              Our bespoke consulting services are designed to guide you through
+              every stage of the apparel lifecycle. From the initial spark of an
+              idea to a thriving retail business, we provide the expertise you
+              need to succeed.
+            </p>
+          </motion.div>
+          <motion.div
+            className='grid grid-cols-2 sm:grid-cols-3 gap-6'
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {serviceCategories.map((cat) => (
+              <div
+                key={cat.name}
+                className='text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow'
+              >
+                <Image
+                  src={cat.icon}
+                  alt={cat.name}
+                  width={64}
+                  height={64}
+                  className='mx-auto'
+                />
+                <h3 className='mt-3 font-semibold text-gray-700'>{cat.name}</h3>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Parte 2: Carrusel de Servicios Destacados */}
+        <div className='mt-24'>
+          <motion.div
+            className='text-center'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className='text-4xl font-serif font-bold text-gray-800'>
+              Featured Consulting Services
+            </h2>
+            <a
+              href='#'
+              className='mt-2 inline-block text-[#D3A6A1] font-semibold hover:underline'
+            >
+              View All Services
+            </a>
+          </motion.div>
+
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            className='!px-10 !py-12'
+          >
+            {featuredServices.map((service) => (
+              <SwiperSlide key={service.name}>
+                <div className='bg-white rounded-xl shadow-sm p-4 text-center group transition-all duration-300 hover:shadow-xl'>
+                  <div className='relative overflow-hidden rounded-lg'>
+                    {service.tag && (
+                      <span className='absolute top-2 right-2 bg-[#D3A6A1] text-white text-xs font-bold px-2 py-1 rounded-full z-10'>
+                        {service.tag}
+                      </span>
+                    )}
+                    <Image
+                      src={service.image}
+                      alt={service.name}
+                      width={300}
+                      height={300}
+                      className='w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300'
+                    />
+                  </div>
+                  <h3 className='mt-4 text-lg font-semibold text-gray-800'>
+                    {service.name}
+                  </h3>
+                  <p className='mt-1 text-gray-500'>$ {service.price} USD</p>
+                  <button className='mt-4 w-full bg-[#A1D3B9] text-gray-800 font-bold py-2 rounded-full hover:bg-opacity-90 transition-opacity'>
+                    Learn More
+                  </button>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );
 };
 
-export default ServicesSection;
+export default Services;

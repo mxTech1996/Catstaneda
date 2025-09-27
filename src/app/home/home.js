@@ -17,14 +17,14 @@ export default function Home() {
   const navigate = useRouter();
 
   return (
-    <main className='relative'>
+    <main>
       <Navbar />
       <HeroSection />
-      <AboutUsSection />
       <ServicesSection />
-
       <PricingSection />
+      <AboutUsSection />
       <TeamSection />
+
       <WhyUs />
       {/* <ProjectsSection /> */}
       <TestimonialsSection />

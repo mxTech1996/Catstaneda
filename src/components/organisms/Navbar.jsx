@@ -1,5 +1,6 @@
 'use client';
 
+import { dataSite } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
@@ -25,14 +26,14 @@ const Navbar = () => {
         <div className='container mx-auto px-6 flex justify-between items-center'>
           <div className='flex items-center space-x-4'>
             <span className='flex items-center'>
-              <FiPhone className='mr-1.5' /> +1 (234) 567 89 00
+              <FiPhone className='mr-1.5' /> {dataSite.telephone}
             </span>
             <span className='hidden md:flex items-center'>
-              <FiMapPin className='mr-1.5' /> SHOWROOM: 123 FASHION AVE, CDMX
+              <FiMapPin className='mr-1.5' /> {dataSite.address}
             </span>
           </div>
           <span className='hidden sm:flex items-center'>
-            <FiMail className='mr-1.5' /> CONSULTAS@CASTANEDA.COM
+            <FiMail className='mr-1.5' /> {dataSite.email}
           </span>
         </div>
       </div>
@@ -43,7 +44,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className='flex items-center'>
             <Image
-              src='/logo.svg'
+              src='/images/logoCas.png'
               alt='Castañeda P.C. Logo'
               width={40}
               height={40}

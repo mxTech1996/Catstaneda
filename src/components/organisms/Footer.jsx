@@ -42,28 +42,7 @@ const Footer = () => {
 
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left'>
           {/* El resto del footer se mantiene igual */}
-          <div>
-            <h3 className='text-xl font-bold text-gray-900 mb-4'>
-              Mirazul Proyecciones
-            </h3>
-            <p className='text-gray-600 text-sm'>
-              Engineering the Future of Construction.
-            </p>
 
-            {/* Accepted payment image */}
-            <div className='mt-4 justify-center md:justify-start'>
-              <p className='text-gray-600 text-sm mr-4 self-center mb-5'>
-                Accepted Payments:
-              </p>
-              <Image
-                src='/images/visaMaster.png'
-                alt='Accepted Payment Methods'
-                width={100}
-                height={40}
-                className='object-contain'
-              />
-            </div>
-          </div>
           <div>
             <h4 className='font-semibold text-gray-800 mb-4'>Company</h4>
 
@@ -104,13 +83,35 @@ const Footer = () => {
               <p>{dataSite.email}</p>
             </address>
           </div>
+          <div>
+            <h3 className='text-xl font-bold text-gray-900 mb-4'>
+              Castañeda P.C.
+            </h3>
+            {/* <p className='text-gray-600 text-sm'>
+              Engineering the Future of Construction.
+            </p> */}
+
+            {/* Accepted payment image */}
+            <div className='mt-4 justify-center md:justify-start'>
+              <p className='text-gray-600 text-sm mr-4 self-center mb-5'>
+                Accepted Payments:
+              </p>
+              <Image
+                src='/images/visaMaster.png'
+                alt='Accepted Payment Methods'
+                width={100}
+                height={40}
+                className='object-contain'
+              />
+            </div>
+          </div>
         </div>
 
         {/* --- Sub-Footer con Copyright --- */}
         <div className='mt-16 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm'>
           <p>
-            &copy; {new Date().getFullYear()} MIRAZUL PROYECCIONES EN
-            EDIFICACION S DE RL DE CV. All Rights Reserved.
+            &copy; {new Date().getFullYear()} CASTAÑEDA PROCESO COMERCIAL S DE
+            RL DE CV. All Rights Reserved.
           </p>
         </div>
       </div>

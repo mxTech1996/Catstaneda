@@ -168,7 +168,7 @@ const ContactFooter = () => {
                 <div className='md:col-span-2 text-center'>
                   <button
                     type='submit'
-                    className='px-10 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors'
+                    className='px-10 py-3 bg-[#D3A6A1] text-white font-semibold rounded-md hover:bg-pink-700 transition-colors'
                   >
                     Submit Request
                   </button>

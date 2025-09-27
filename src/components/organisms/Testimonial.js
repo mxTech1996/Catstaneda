@@ -56,7 +56,7 @@ const TestimonialsSlider = () => {
                 <div className='text-center flex flex-col items-center'>
                   <LuQuote
                     size={40}
-                    className='text-pink-500 opacity-50 mb-6'
+                    className='text-[#D3A6A1] opacity-50 mb-6'
                   />
                   <p className='text-xl text-gray-700 leading-relaxed italic mb-8'>
                     &ldquo;{testimonial.description}&rdquo;

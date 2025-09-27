@@ -1,133 +1,116 @@
-// En tu archivo: /components/AboutSection.js
 'use client';
 
+import { dataSite } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-// Íconos para la lista y el botón de play
-import { LuCheckCircle, LuPlay } from 'react-icons/lu';
+import { FiCheck } from 'react-icons/fi';
 
-// --- Datos para la sección ---
+// --- DATOS PARA EL COMPONENTE ---
 const coreValues = [
-  {
-    title: 'Innovation',
-    description:
-      'Pushing the boundaries of modern engineering with cutting-edge technology.',
-  },
-  {
-    title: 'Precision',
-    description:
-      'Meticulous attention to detail in every calculation, design, and execution.',
-  },
-  {
-    title: 'Integrity',
-    description:
-      'Building lasting structures and relationships on a foundation of absolute trust.',
-  },
+  'Bespoke strategies for every client',
+  'Commitment to quality and craftsmanship',
+  'Sustainable and ethical sourcing guidance',
 ];
 
-const AboutSection = () => {
-  // Variantes para animación escalonada del texto
-  const textContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  };
+const stats = [
+  // { value: '15+', label: 'Years of Experience' },
+  { value: '10+', label: 'Brands Launched' },
+  { value: '15+', label: 'Projects Completed' },
+  { value: '98%', label: 'Client Satisfaction' },
+  // { value: '10+', label: 'Industry Awards' },
+];
 
-  const itemVariants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
+const AboutUs = () => {
   return (
-    <section
-      id='about'
-      className='relative py-20 md:py-28 bg-white overflow-hidden'
-    >
-      {/* Formas decorativas en el fondo */}
-      <div className='absolute top-10 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -translate-x-1/4'></div>
-      <div className='absolute bottom-10 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/4'></div>
-
-      <div className='container mx-auto px-4 relative z-10'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
-          {/* --- Columna de Imagen (Izquierda) --- */}
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className='relative w-full aspect-square max-w-lg mx-auto'
-          >
-            <Image
-              src='/images/about.png' // Reemplaza con tu imagen generada
-              alt='Engineers reviewing a project'
-              layout='fill'
-              objectFit='cover'
-              className='rounded-lg shadow-2xl'
-            />
-            {/* <div className='absolute inset-0 flex items-center justify-center'>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                className='w-20 h-20 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50'
-              >
-                <LuPlay size={32} className='text-white ml-1' />
-              </motion.button>
-            </div> */}
-          </motion.div>
-
-          {/* --- Columna de Texto (Derecha) --- */}
-          <motion.div
-            variants={textContainerVariants}
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.p
-              variants={itemVariants}
-              className='font-semibold text-pink-600 mb-2 uppercase'
+    <section id='about-us' className='bg-[#FAF8F5]'>
+      {/* Parte 1: Foco en la Fundadora/Filosofía */}
+      <div className='relative w-full min-h-[700px] flex items-center'>
+        {/* Imagen de Fondo */}
+        <Image
+          src='/images/service3.png'
+          alt='Fashion design studio background'
+          layout='fill'
+          objectFit='cover'
+          className='z-0'
+        />
+        <div className='absolute inset-0 bg-black/30'></div>{' '}
+        {/* Overlay oscuro para legibilidad */}
+        <div className='container mx-auto px-6 relative z-10'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+            {/* Columna de Texto */}
+            <motion.div
+              className='text-white'
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: 'easeOut' }}
             >
-              Who We Are
-            </motion.p>
-            <motion.h2
-              variants={itemVariants}
-              className='text-4xl md:text-5xl font-bold text-gray-900 mb-6'
-            >
-              About Mirazul Proyecciones
-            </motion.h2>
-            <motion.p
-              variants={itemVariants}
-              className='text-gray-600 mb-6 leading-relaxed'
-            >
-              We are a forward-thinking engineering firm committed to
-              integrating cutting-edge technology with time-tested structural
-              principles. Our goal is to provide our clients with innovative,
-              efficient, and resilient solutions that stand the test of time.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className='space-y-4 mb-8'>
-              {coreValues.map((value, index) => (
-                <div
-                  key={index}
-                  className='p-4 bg-gray-50 rounded-md border border-gray-200'
-                >
-                  <h4 className='font-bold text-gray-800'>{value.title}</h4>
-                  <p className='text-sm text-gray-500'>{value.description}</p>
-                </div>
-              ))}
+              <p className='font-semibold tracking-widest text-sm mb-2'>
+                OUR PHILOSOPHY
+              </p>
+              <h2 className='text-5xl md:text-6xl font-serif font-bold leading-tight'>
+                Passion Woven into Every Thread
+              </h2>
+              <p className='mt-6 text-lg max-w-lg'>
+                Castañeda P.C. was born from a passion for craftsmanship and a
+                vision to empower fashion entrepreneurs. We believe every great
+                brand is built on a foundation of quality, creativity, and
+                strategic insight.
+              </p>
+              <ul className='mt-6 space-y-3'>
+                {coreValues.map((value) => (
+                  <li key={value} className='flex items-center'>
+                    <FiCheck className='text-[#A1D3B9] mr-3' />
+                    <span>{value}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className='mt-10 bg-[#A1D3B9] text-gray-800 font-bold px-8 py-3 rounded-full hover:bg-opacity-90 transition-all'>
+                Learn Our Story
+              </button>
             </motion.div>
 
-            {/* <motion.div variants={itemVariants}>
-              <button className='px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors'>
-                More About Us
-              </button>
-            </motion.div> */}
-          </motion.div>
+            {/* Columna de Imagen (Retrato) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src='/images/service4.png'
+                alt='Founder of Castañeda P.C.'
+                width={400}
+                height={533}
+                className='mx-auto'
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Parte 2: Barra de Estadísticas */}
+      <div className='bg-[#D3A6A1] text-white py-12'>
+        <div className='container mx-auto px-6'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center'>
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <p className='text-4xl font-bold font-serif'>{stat.value}</p>
+                <div className='w-10 h-px bg-white/50 mx-auto my-2'></div>
+                <p className='text-sm font-semibold'>{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default AboutSection;
+export default AboutUs;
