@@ -1,84 +1,87 @@
 'use client';
-import Link from 'next/link';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { PiHandsClappingDuotone } from 'react-icons/pi';
 
-import Container from '../atoms/Container';
-import { useContext } from 'react';
-import { CartContext } from 'ui-old-version';
-// import phone icon
-import { PiPhoneCall } from 'react-icons/pi';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 
-const Navbar = ({ withAll = true, withCart = false }) => {
-  const { products } = useContext(CartContext);
+const Navbar = () => {
+  const navLinks = [
+    { name: 'Services', href: '#services' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Process', href: '#process' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
   return (
-    <nav className='w-full px-4 md:px-0 bg-blue-400'>
-      <Container className='flex justify-between h-20 items-center'>
-        <div>
-          <Link
-            href='/'
-            className='text-secondary font-black text-xs sm:text-sm flex gap-2 items-center leading-none text-white'
-          >
-            <span className='text-lg'>
-              <PiHandsClappingDuotone />
+    <motion.header
+      className='w-full'
+      initial={{ y: -150 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Barra Superior de Contacto */}
+      <div className='bg-[#D3A6A1] text-white text-xs py-2'>
+        <div className='container mx-auto px-6 flex justify-between items-center'>
+          <div className='flex items-center space-x-4'>
+            <span className='flex items-center'>
+              <FiPhone className='mr-1.5' /> +1 (234) 567 89 00
             </span>
-
-            <p>Golarzep</p>
-          </Link>
-        </div>
-
-        {withAll && (
-          <div className=' flex flex-1 justify-end items-center gap-4 sm:gap-10 text-sm sm:text-base font-medium text-primary sm:text-white'>
-            <Link href='#our-services'>Our Services</Link>
-            <Link href='#benefits' className='hidden sm:block'>
-              Benefits
-            </Link>
-
-            {withCart ? <CartButton /> : <GetAQuoteButton />}
+            <span className='hidden md:flex items-center'>
+              <FiMapPin className='mr-1.5' /> SHOWROOM: 123 FASHION AVE, CDMX
+            </span>
           </div>
-        )}
-      </Container>
-    </nav>
+          <span className='hidden sm:flex items-center'>
+            <FiMail className='mr-1.5' /> CONSULTAS@CASTANEDA.COM
+          </span>
+        </div>
+      </div>
+
+      {/* Barra de Navegación Principal */}
+      <nav className='bg-[#FAF8F5] py-4'>
+        <div className='container mx-auto px-6 flex justify-between items-center'>
+          {/* Logo */}
+          <div className='flex items-center'>
+            <Image
+              src='/logo.svg'
+              alt='Castañeda P.C. Logo'
+              width={40}
+              height={40}
+            />
+            <span className='ml-2 text-2xl font-semibold text-gray-800'>
+              Castañeda P.C.
+            </span>
+          </div>
+
+          {/* Links de Navegación */}
+          <div className='hidden lg:flex items-center space-x-8'>
+            {navLinks.map((link) => (
+              <a
+                href='#'
+                key={link.href}
+                className='text-gray-700 font-medium hover:text-[#D3A6A1] transition-colors'
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Botón de Consulta */}
+          <a
+            href='#contact'
+            className='hidden lg:inline-block bg-[#A1D3B9] text-gray-800 font-bold px-6 py-2 rounded-full hover:bg-opacity-90 transition-all'
+          >
+            Get a Consultation
+          </a>
+
+          {/* Menú Móvil (Icono) */}
+          <div className='lg:hidden'>
+            <button className='text-gray-800 text-3xl'>☰</button>
+          </div>
+        </div>
+      </nav>
+    </motion.header>
   );
 };
 
 export default Navbar;
-
-const CartButton = () => {
-  const { products } = useContext(CartContext);
-
-  return (
-    <div className='bg-third rounded-md p-2.5 flex justify-center items-center'>
-      <Link
-        href='/my-cart'
-        className='hover:text-primary hover:underline flex items-center md:text-lg'
-      >
-        <div className='relative '>
-          {products.length > 0 && (
-            <div className='w-5 h-5 flex items-center justify-center rounded-full bg-secondary absolute -top-4 -right-4'>
-              <p className='text-white text-[10px]'>
-                {products.length > 99 ? '' : products.length}
-              </p>
-            </div>
-          )}
-          <AiOutlineShoppingCart className='text-white' size={17} />
-        </div>
-      </Link>
-    </div>
-  );
-};
-
-const GetAQuoteButton = () => {
-  return (
-    <div className='bg-third rounded-md p-2.5 flex justify-center items-center'>
-      <Link
-        href='/contact'
-        className='hover:text-primary hover:underline flex items-center md:text-lg'
-      >
-        <p className='text-white mr-3'>Get a Quote</p>
-        <PiPhoneCall className='text-white' size={25} />
-      </Link>
-    </div>
-  );
-};
