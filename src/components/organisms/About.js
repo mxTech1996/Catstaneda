@@ -65,9 +65,9 @@ const AboutUs = () => {
                   </li>
                 ))}
               </ul>
-              <button className='mt-10 bg-[#A1D3B9] text-gray-800 font-bold px-8 py-3 rounded-full hover:bg-opacity-90 transition-all'>
+              {/* <button className='mt-10 bg-[#A1D3B9] text-gray-800 font-bold px-8 py-3 rounded-full hover:bg-opacity-90 transition-all'>
                 Learn Our Story
-              </button>
+              </button> */}
             </motion.div>
 
             {/* Columna de Imagen (Retrato) */}

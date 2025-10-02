@@ -3,9 +3,12 @@
 import { dataSite } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useContext } from 'react';
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { CartContext } from 'ui-old-version';
 
-const Navbar = () => {
+const Navbar = ({ isHome = true, withCart = false }) => {
+  const { products } = useContext(CartContext);
   const navLinks = [
     { name: 'Services', href: '#services' },
     { name: 'About Us', href: '#about' },
@@ -55,25 +58,31 @@ const Navbar = () => {
           </div>
 
           {/* Links de Navegación */}
-          <div className='hidden lg:flex items-center space-x-8'>
-            {navLinks.map((link) => (
-              <a
-                href='#'
-                key={link.href}
-                className='text-gray-700 font-medium hover:text-[#D3A6A1] transition-colors'
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
+          {isHome && (
+            <div className='hidden lg:flex items-center space-x-8'>
+              {navLinks.map((link) => (
+                <a
+                  href='#'
+                  key={link.href}
+                  className='text-gray-700 font-medium hover:text-[#D3A6A1] transition-colors'
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          )}
 
           {/* Botón de Consulta */}
-          <a
-            href='#contact'
-            className='hidden lg:inline-block bg-[#A1D3B9] text-gray-800 font-bold px-6 py-2 rounded-full hover:bg-opacity-90 transition-all'
-          >
-            Get a Consultation
-          </a>
+          {!withCart ? (
+            <a
+              href='/contact'
+              className='hidden lg:inline-block bg-[#A1D3B9] text-gray-800 font-bold px-6 py-2 rounded-full hover:bg-opacity-90 transition-all'
+            >
+              Get a Consultation
+            </a>
+          ) : (
+            <ButtonCart items={products.length} />
+          )}
 
           {/* Menú Móvil (Icono) */}
           <div className='lg:hidden'>
@@ -84,5 +93,27 @@ const Navbar = () => {
     </motion.header>
   );
 };
+
+const ButtonCart = ({ items }) => (
+  <button className='relative text-gray-800'>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      className='h-6 w-6'
+      fill='none'
+      viewBox='0 0 24 24'
+      stroke='currentColor'
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth={2}
+        d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'
+      />
+    </svg>
+    <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center'>
+      {items}
+    </span>
+  </button>
+);
 
 export default Navbar;

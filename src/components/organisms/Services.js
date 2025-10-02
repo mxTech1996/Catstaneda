@@ -8,6 +8,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { dataSite } from '@/data';
+import { useRouter } from 'next/navigation';
 
 // --- DATOS PARA EL COMPONENTE ---
 const serviceCategories = [
@@ -22,6 +23,7 @@ const serviceCategories = [
 const featuredServices = dataSite.products;
 
 const Services = () => {
+  const router = useRouter();
   return (
     <section className='py-24 bg-[#FAF8F5]'>
       <div className='container mx-auto px-6'>
@@ -124,7 +126,10 @@ const Services = () => {
                     {service.name}
                   </h3>
                   <p className='mt-1 text-gray-500'>$ {service.price} USD</p>
-                  <button className='mt-4 w-full bg-[#A1D3B9] text-gray-800 font-bold py-2 rounded-full hover:bg-opacity-90 transition-opacity'>
+                  <button
+                    onClick={() => router.push(`/contact`)}
+                    className='mt-4 w-full bg-[#A1D3B9] text-gray-800 font-bold py-2 rounded-full hover:bg-opacity-90 transition-opacity'
+                  >
                     Learn More
                   </button>
                 </div>

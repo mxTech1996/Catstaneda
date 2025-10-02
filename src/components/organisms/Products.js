@@ -101,9 +101,9 @@ const FeaturedEngagements = () => {
                     </div>
                   ))}
                 </div>
-                <button className='mt-8 bg-[#D3A6A1] text-white font-bold px-8 py-3 rounded-full hover:bg-opacity-90 transition-all'>
+                {/* <button className='mt-8 bg-[#D3A6A1] text-white font-bold px-8 py-3 rounded-full hover:bg-opacity-90 transition-all'>
                   Inquire Now
-                </button>
+                </button> */}
               </div>
 
               {/* Columna de Imagen */}
