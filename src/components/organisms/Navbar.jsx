@@ -3,7 +3,7 @@
 import { dataSite } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { CartContext } from 'ui-old-version';

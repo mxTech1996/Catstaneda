@@ -3,17 +3,14 @@
 import Footer from '@/components/organisms/Footer';
 import Navbar from '@/components/organisms/Navbar';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { dataSite } from '@/data';
 import { CartContext } from 'ui-old-version';
 import { useContext } from 'react';
 
-export default function Home() {
+export default function Products() {
   const { handleAddOrRemoveProduct, validateProductInCart } =
     useContext(CartContext);
-  const navigate = useRouter();
-
   const productsOver60 = dataSite.products.filter(
     (product) => parseFloat(product.price) > 60
   );
