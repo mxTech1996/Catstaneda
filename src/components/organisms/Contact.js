@@ -71,7 +71,7 @@ const ContactFooter = () => {
   };
 
   return (
-    <div className='py-20 md:py-28 bg-gray-50'>
+    <div id='contact' className='py-20 md:py-28 bg-gray-50'>
       <div className='container mx-auto px-4 max-w-6xl'>
         {/* --- Parte 1: Formulario de Contacto --- */}
         <motion.div

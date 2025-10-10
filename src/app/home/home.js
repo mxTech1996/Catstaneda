@@ -20,8 +20,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <ServicesSection />
-      <PricingSection />
       <AboutUsSection />
+      <PricingSection />
       <TeamSection />
       <WhyUs />
       <TestimonialsSection />

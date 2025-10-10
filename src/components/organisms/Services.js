@@ -25,7 +25,7 @@ const featuredServices = dataSite.products;
 const Services = () => {
   const router = useRouter();
   return (
-    <section className='py-24 bg-[#FAF8F5]'>
+    <section id='services' className='py-24 bg-[#FAF8F5]'>
       <div className='container mx-auto px-6'>
         {/* Parte 1: Cuadrícula de Categorías */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>

@@ -32,11 +32,11 @@ export const footerData = [
     title: 'Contact Us',
   },
   {
-    href: '/pdf/AP-GOLAR-ZEP-MAY0-2024.pdf',
+    href: '/pdf/AP.pdf',
     title: 'Privacy',
   },
   {
-    href: '/pdf/TYC-GOLAR-ZEP-MAYO-2024.pdf',
+    href: '/pdf/TYC.pdf',
     title: 'Terms',
   },
 ];
@@ -69,7 +69,7 @@ export const dataSite = {
   name: 'Castaneda',
   url: 'http://www.dorquin.lat/',
   telephone: '5530474991',
-  email: 'admcaminos@emailsecure.lat',
+  email: 'admcastaneda@emailsecure.lat',
   address:
     'AV EUGENIA 831, 604 A, DEL VALLE CENTRO, BENITO JUAREZ, CIUDAD DE MEXICO, C.P. 03100',
   description:

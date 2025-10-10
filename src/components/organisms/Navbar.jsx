@@ -12,8 +12,8 @@ const Navbar = ({ isHome = true, withCart = false }) => {
   const { products } = useContext(CartContext);
   const navLinks = [
     { name: 'Services', href: '#services' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Process', href: '#process' },
+    { name: 'About Us', href: '#about-us' },
+    { name: 'Why Us', href: '#why-us' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -63,7 +63,7 @@ const Navbar = ({ isHome = true, withCart = false }) => {
             <div className='hidden lg:flex items-center space-x-8'>
               {navLinks.map((link) => (
                 <a
-                  href='#'
+                  href={link.href}
                   key={link.href}
                   className='text-gray-700 font-medium hover:text-[#D3A6A1] transition-colors'
                 >

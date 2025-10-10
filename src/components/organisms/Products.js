@@ -39,7 +39,7 @@ const FeaturedEngagements = () => {
   ];
 
   return (
-    <section className='py-24 bg-[#FAF8F5]'>
+    <section id='portfolio' className='py-24 bg-[#FAF8F5]'>
       <div className='container mx-auto px-6'>
         {/* Título de la Sección */}
         <motion.div
